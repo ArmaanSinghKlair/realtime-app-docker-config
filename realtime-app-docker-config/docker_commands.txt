@@ -1,0 +1,24 @@
+##docker run -d --network=host --name haproxy-container --rm haproxytech/haproxy-ubuntu:3.1
+docker build --no-cache -t realtime-app-proxy .
+docker run -d --network=host --name realtime-app-proxy --rm realtime-app-proxy
+
+
+#docker cp ./haproxy.cfg haproxy-container:/usr/local/etc/haproxy/haproxy.cfg
+
+#docker kill -s HUP haproxy-container
+
+docker logs realtime-app-proxy
+
+===============================================================================================================
+docker exec -it realtime-app-proxy sh
+docker builder prune --all
+
+======================================================================
+SETUP setup rsyslog
+=======================================================================
+
+apt-get update
+apt-get install -y rsyslog
+docker cp ./49-haproxy.conf haproxy-container:/etc/rsyslog.d/49-haproxy.conf
+pkill rsyslogd
+rsyslogd
