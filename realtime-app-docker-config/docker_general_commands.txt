@@ -10,7 +10,7 @@ docker run -d --network=host --name realtime-app-proxy --rm realtime-app-proxy
 docker logs realtime-app-proxy
 
 ===============================================================================================================
-docker exec -it realtime-app-proxy sh
+docker exec -it realtime-multi-webapp-combined-image sh
 docker builder prune --all
 
 ======================================================================
