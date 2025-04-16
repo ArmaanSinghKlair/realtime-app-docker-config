@@ -1,14 +1,8 @@
-# Dockerfile
-FROM openjdk:22-jdk-slim
+FROM eclipse-temurin:22-jre-alpine
 WORKDIR /realtime-webapp
-
-# Copy both wars
-COPY realtime-service-registry.war realtime-service-registry.war
-COPY realtime-microservice.war realtime-microservice.war
-
-# Create a startup script
-COPY multi_war_startup.sh start.sh
-RUN chmod +x start.sh
-
-# Run the script
-ENTRYPOINT ["./start.sh"]
+COPY realtime-service-registry.war realtime-microservice.war multi_war_startup.sh .
+RUN chmod +x multi_war_startup.sh && \
+    sed -i 's|#!/bin/bash|#!/bin/sh|' multi_war_startup.sh && \
+    sed -i 's/\r$//' multi_war_startup.sh && \
+    rm -rf /tmp/*
+ENTRYPOINT ["./multi_war_startup.sh"]

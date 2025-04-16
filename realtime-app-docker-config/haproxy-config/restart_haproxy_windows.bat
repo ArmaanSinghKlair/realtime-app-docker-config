@@ -11,4 +11,4 @@ rem Build your custom image
 docker build --no-cache -t armaansinghkl/realtime-app-proxy .
 
 rem Run the proxy
-docker run -d --network=host --privileged --name realtime-app-proxy --rm armaansinghkl/realtime-app-proxy bash -c "/usr/sbin/haproxy -f /usr/local/etc/haproxy/haproxy.cfg && pkill rsyslogd || true && rsyslogd && tail -f /dev/null"
+docker run -d --network=host --privileged --name realtime-app-proxy --rm armaansinghkl/realtime-app-proxy sh -c "/usr/sbin/haproxy -f /usr/local/etc/haproxy/haproxy.cfg && pkill rsyslogd || true && rsyslogd && tail -f /dev/null"

@@ -1,7 +1,7 @@
-FROM haproxytech/haproxy-ubuntu:3.1
+FROM haproxytech/haproxy-alpine:3.1
 
 # Install rsyslog
-RUN apt-get update && apt-get install -y rsyslog
+RUN apk add --no-cache rsyslog
 
 # Copy custom HAProxy configuration file
 COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
