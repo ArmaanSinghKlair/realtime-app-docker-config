@@ -13,4 +13,4 @@ docker rmi armaansinghkl/realtime-reactapp-image
 docker build --no-cache -t armaansinghkl/realtime-reactapp-image .
 
 # Run the proxy
-docker run -d --network=host --privileged --name realtime-reactapp-image --rm armaansinghkl/realtime-reactapp-image
+docker run -d -p 9000:80 --name realtime-reactapp-image --rm armaansinghkl/realtime-reactapp-image
